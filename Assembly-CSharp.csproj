@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{51A69B38-AB5C-2C91-32BA-44C41C733F4C}</ProjectGuid>
+	<ProjectGuid>{77954777-1C83-9F5B-55B9-AC72756BE5B5}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -39,15 +39,25 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Programmes/Unity3D/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Programmes/Unity3D/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\UI\ComboBox.cs" />
      <Compile Include="Assets\Scripts\UI\mainInterface.cs" />
+     <Compile Include="Assets\Scripts\myLibrary\myGUI.cs" />
+     <Compile Include="Assets\Scripts\myLibrary\myGestionaireRegles.cs" />
+     <Compile Include="Assets\Scripts\myLibrary\myGestionaireSQLiteDatabase.cs" />
+     <Compile Include="Assets\Scripts\myLibrary\myRegle.cs" />
+ <Reference Include="System.Data.SQLite">
+ <HintPath>Assets\Ressource\Library\System.Data.SQLite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>Assets\Ressource\Library\System.Data.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
