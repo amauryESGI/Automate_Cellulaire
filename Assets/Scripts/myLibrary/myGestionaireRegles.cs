@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+using System.Data;
+using System.Collections.Generic;
+
 public class myGestionaireRegles
 {
     private int m_TTL;
@@ -7,82 +10,50 @@ public class myGestionaireRegles
     private Color[] m_etatColor;
     private Color m_final;
 
+    private myGestionaireSQLiteDatabase m_bdd;
+//    private DataTable m_dt;
+//    private Dictionary<string, string> data;
+
     public myGestionaireRegles()
     {
+        m_bdd = new myGestionaireSQLiteDatabase();
+//        m_dt = new DataTable();
+//        data = new Dictionary<string, string>();
     }
 
-    public void setVieMax(int vieMax)
+    public DataTable getLois(string typeRegle)
     {
-        m_vieMax = vieMax;
+        return m_bdd.GetDataTable("SELECT id_loi, name FROM lois WHERE id_typeRegle = '" + typeRegle + "' ORDER BY name ASC");
     }
 
-    public int getVieMax()
+    public DataTable getLoi(int id)
     {
-        return m_vieMax;
+        return m_bdd.GetDataTable("SELECT * FROM lois WHERE id_typeRegle = '" + id + "' ORDER BY name ASC");
     }
 
-    public void setTTL(int TTL)
+    public DataTable getRegles(string typeRegle)
     {
-        m_TTL = TTL;
+        return m_bdd.GetDataTable("SELECT id_regle, name FROM '" + (m_bdd.GetDataTable("SELECT id_regle FROM typeRegle WHERE name = '" + typeRegle + "' ORDER BY name ASC")).Rows[0][0].ToString() + "' ORDER BY name ASC");
     }
 
-    public int getTTL()
+    public DataTable getRegle(int id, string typeRegle)
     {
-        return m_TTL;
+        return m_bdd.GetDataTable("SELECT * FROM '" + (m_bdd.GetDataTable("SELECT id_regle FROM typeRegle WHERE name = '" + typeRegle + "' ORDER BY name ASC")).Rows[0][0].ToString() + "' WHERE id_Regle = '" + id + "' ORDER BY name ASC");
     }
 
-    public void setEtatColor(Color[] etatColor)
+    public DataTable getColors()
     {
-        m_etatColor = etatColor;
+        return m_bdd.GetDataTable("SELECT id_regle, name FROM couleurs ORDER BY name ASC");
     }
 
-    public Color[] getEtatColor()
+    public DataTable getColor(int id)
     {
-        return m_etatColor;
+        return m_bdd.GetDataTable("SELECT id_regle, name FROM couleurs WHERE id_Couleur = '" + id + "' ORDER BY name ASC");
     }
 
-    public void setFinalColor(Color finalColor)
+    public DataTable getTypesRegle()
     {
-        m_final = finalColor;
-    }
-
-    public Color getFinalColor()
-    {
-        return m_final;
-    }
-
-    public void setColor(Color color, int i)
-    {
-        m_etatColor[i] = color;
-    }
-
-    public Color getColor(int i)
-    {
-        return m_etatColor[i];
-    }
-
-    public int getNbColor(Color color)
-    {
-        int nb = 0;
-
-        for (int i = 0; i < 9; i++)
-            if (m_etatColor[i] == color && i != 4)
-                nb++;
-
-        return nb;
-    }
-
-    public int[] getPosColor(Color color)
-    {
-        int[] pos = new int[8];
-        int nb = 0;
-
-        for (int i = 0; i < 9; i++)
-            if (m_etatColor[i] == color && i != 4)
-            {
-                pos[nb++] = i;
-            }
-
-        return pos;
+        // app la bonne tab
+        return m_bdd.GetDataTable("SELECT id_typeRegle, name FROM typesRegle ORDER BY name ASC");
     }
 }

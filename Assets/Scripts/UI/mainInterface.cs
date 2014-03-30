@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Data;
 
 public class mainInterface : MonoBehaviour {
     public struct plan3D {
@@ -9,6 +10,9 @@ public class mainInterface : MonoBehaviour {
         public int z;
     }
 
+    //myGestionaireRegles gestionRegles;
+    //DataTable m_dt;
+
     private string affichagePlan, affichageRegle, affichageCustom;
     private plan3D pos;
     private plan3D sizeMin;
@@ -16,6 +20,9 @@ public class mainInterface : MonoBehaviour {
     private List<myRegle> regle2D;
 
     private void Start() {
+        //gestionRegles = new myGestionaireRegles();
+        //m_dt = new DataTable();
+
         affichagePlan = "3D";
         affichageRegle = "Rules";
         affichageCustom = "Custom";
@@ -55,7 +62,7 @@ public class mainInterface : MonoBehaviour {
         colorTmp[7] = colorMasque;
         colorTmp[8] = colorMasque;
         regle2D.Add(new myRegle(colorTmp));
-
+        
         colorTmp[0] = colorMasque;
         colorTmp[1] = colorMasque;
         colorTmp[2] = colorMasque;
@@ -114,6 +121,34 @@ public class mainInterface : MonoBehaviour {
                 pos.z = analiseInteger(myGUI.verifTextIsInteger(GUI.TextArea(new Rect(40, 70, 40, 19), pos.z.ToString()), sizeMin.z, 25), pos.z);
 
                 GUI.EndGroup();
+                
+                #region comboBox
+                //ComboBox comboBoxControl = new ComboBox();
+                //GUIStyle listStyle = new GUIStyle();
+
+                //GUIContent[] comboBoxList = new GUIContent[3];
+                //comboBoxList[0] = new GUIContent("Carre");
+                //comboBoxList[1] = new GUIContent("Hexagone");
+                //comboBoxList[2] = new GUIContent("Image");
+                
+                //listStyle.normal.textColor = Color.white; 
+                //listStyle.onHover.background = 
+                //listStyle.hover.background = new Texture2D(2, 2);
+                //listStyle.padding.left = 
+                //listStyle.padding.right = 
+                //listStyle.padding.top = 
+                //listStyle.padding.bottom = 4;
+                //int selectedItemIndex = comboBoxControl.GetSelectedItemIndex();
+
+                //selectedItemIndex = comboBoxControl.List( 
+                //    new Rect(180, 10, 100, 20), comboBoxList[selectedItemIndex].text, comboBoxList, listStyle );
+                //GUI.Label(new Rect(50, 70, 400, 21),
+                //  "You picked " + comboBoxList[selectedItemIndex].text + "!");
+                myComboBox comboBoxControl = new myComboBox(new Rect(180, 10, 100, 20));
+                comboBoxControl.addItemToList("Carre");
+                comboBoxControl.addItemToList("Hexagone");
+                comboBoxControl.addItemToList("Image");
+                #endregion comboBox
             }
             else
             {
